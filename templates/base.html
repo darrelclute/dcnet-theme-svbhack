@@ -4,8 +4,7 @@
 <head>
   <link rel="stylesheet/less" type="text/css" href="{{ SITEURL }}/theme/css/style.less">
   <script src="{{ SITEURL }}/theme/js/less-1.5.0.min.js" type="text/javascript"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css"> -->
-
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
@@ -46,7 +45,18 @@
       <div id="social_links">
         <ul id="social_links">
           {% for name, link in SOCIAL %}
-          <li><a href="{{ link }}" target="_blank">{{ name }}</a></li>
+          {% if GOOGLE_PLUS_USERNAME %}
+          <li><a href="https://plus.google.com/+{{ GOOGLE_PLUS_USERNAME }}/" rel='me' target="_blank"><i class="icon-google-plus icon-2x"></i></a></li>
+          {% endif %}
+          {% if TWITTER_USERNAME %}
+          <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}/" rel='me' target="_blank"><i class="icon-twitter icon-2x"></i></a></li>
+          {% endif %}
+          {% if LINKEDIN_USERNAME %}
+          <li><a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/" rel='me' target="_blank"><i class="icon-linkedin icon-2x"></i></a></li>
+          {% endif %}
+          {% if GITHUB_USERNAME %}
+          <li><a href="https://github.com/{{ GITHUB_USERNAME }}/" rel='me' target="_blank"><i class="icon-github icon-2x"></i></a></li>
+          {% endif %}
           {% endfor %}
         </ul>
       </div>
