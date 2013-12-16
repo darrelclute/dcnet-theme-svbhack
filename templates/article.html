@@ -31,6 +31,10 @@
     {% endif %}
   </div>
 
+  {% if TWITTER_USERNAME %}
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{TWITTER_USERNAME}}">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+  {% endif %}
+
   {% if DISQUS_SITENAME %}
     <div id="article_comments" style="display:{%if COLLAPSE_COMMENTS %}none{% else %}block{% endif %}">
         <div id="disqus_thread"></div>
