@@ -52,7 +52,7 @@
 {% endblock %}
 
 {% block footer %}
-        <p><a href="{{ SITEURL }}/" class="button_accent">&larr; Back to Index</a></p>
+{% include modules/pagination.html %}
         <script language="javascript">
             function toggleComments() {
                 var commentDiv = document.getElementById("article_comments");
