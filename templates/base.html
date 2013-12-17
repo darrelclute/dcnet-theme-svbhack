@@ -17,10 +17,10 @@
 {% endfor %}
 
 {% if FEED_ALL_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - All Posts" />
 {% endif %}
 {% if CATEGORY_FEED_ATOM and category %}
-    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} {{ category }} Atom Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - {{ category }}" />
 {% endif %}
 {% if FEED_ALL_RSS %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
@@ -30,7 +30,7 @@
 {% endblock %}
 
     <title>
-      {% block title %}{% endblock %}{{ SITENAME }}
+      {% block title %}{% endblock %}{{ SITENAME }} - {{ TAGLINE }}
     </title>
 
 {% include "modules/analytics.html" %}
@@ -80,17 +80,17 @@
 
     <main>
       <header>
-{% block header %}
-        <p>
-        <a href="{{ SITEURL }}">Index</a> &#124; <a href="{{ SITEURL }}/archives.html">Archives</a>
+        <p id="menu">
+          <a href="{{ SITEURL }}">Home</a> &#124; <a href="{{ SITEURL }}/archive.html">Article Archives</a>
 {% if FEED_ALL_ATOM %}
-        &#124; <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">Atom Feed</a>
+          &#124; <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">Atom Feed - All Posts</a>
 {% endif %}
 {% if FEED_ALL_RSS %}
-        &#124; <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">RSS Feed</a>
+          &#124; <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">RSS Feed - All Posts</a>
 {% endif %}
-        </p>
+{% block header %}
 {% endblock header %}
+        </p>
       </header>
 
 {% block content %}
@@ -106,8 +106,5 @@
       </div>
     </main>
 {% include "modules/idl.html" %}
-{% if GITHUB_URL %}
-    <a href="{{ GITHUB_URL }}"><img style="position: absolute; top: 50px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
-{% endif %}
   </body>
 </html>
