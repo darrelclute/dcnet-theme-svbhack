@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="{{ DEFAULT_LANG }}" prefix="og: http://ogp.me/ns#">
 
   <head>
     <link rel="stylesheet/less" type="text/css" href="{{ SITEURL }}/theme/css/style.less">
@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pygments.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+    <link rel="shortcut icon" href="/theme/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/theme/favicon.ico" type="image/x-icon">
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,13 +21,18 @@
 {% if FEED_ALL_ATOM %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - All Posts" />
 {% endif %}
-{% if CATEGORY_FEED_ATOM and categories %}
-{% for cat, null in categories %}
-    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(cat) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - {{ cat }} Posts" />
-{% endfor %}
-{% endif %}
 {% if FEED_ALL_RSS %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+{% endif %}
+{% if categories %}
+{% for cat, null in categories %}
+{% if CATEGORY_FEED_ATOM %}
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(cat) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - {{ cat }} Posts" />
+{% endif %}
+{% if CATEGORY_FEED_RSS %}
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(cat) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed - {{ cat }} Posts" />
+{% endif %}
+{% endfor %}
 {% endif %}
 
 {% block head %}

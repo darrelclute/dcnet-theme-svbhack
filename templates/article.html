@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block head %}
-<meta name="keywords" content="{{ article.tags|join(', ')  }}">
+    <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
+    <meta name="keywords" content="{{ article.tags|join(', ')  }}">
+{% if TWITTER_USERNAME %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}">
+{% endif %}
+    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
+    <meta property="og:title" content="{{ article.title }}">
+    <meta property="og:description" content="{{ article.content|truncate(length=200) }}">
+    <meta property="og:image" content="">
 {% endblock %}
 
 {% block title %}{{ article.title }}: {% endblock %}
@@ -26,16 +35,27 @@
 {% endfor %}
           </p>
 {% endif %}
-{% if DISQUS_SITENAME %}
-          <p>Comments: <a href="#" onclick="javascript:toggleComments();return false;">toggle</a></p>
-{% endif %}
         </div>
+        <div class="article_social">
+          <ul>
 {% if TWITTER_USERNAME %}
-        <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{TWITTER_USERNAME}}">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{TWITTER_USERNAME}}">Tweet</a></li><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 {% endif %}
-      
+
+{% if GOOGLE_PLUS_USERNAME %}
+            <li><div class="g-plusone"></div></li>
+            <script type="text/javascript">
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/platform.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+            </script>
+{% endif %}
+          </ul>
+        </div>
 {% if DISQUS_SITENAME %}
-          <div id="article_comments" style="display:{%if COLLAPSE_COMMENTS %}none{% else %}block{% endif %}">
+          <div id="article_comments" style="display:block">
               <div id="disqus_thread"></div>
               <script type="text/javascript">
                  var disqus_identifier = "{{ article.url }}";
