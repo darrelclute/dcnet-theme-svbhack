@@ -57,34 +57,27 @@
         </a>
         <h2><a href="{{ SITEURL }}">{{ AUTHOR }}</a></h2>
         <p>{{ TAGLINE }}</p>
-        <div id="social_links">
-          <ul id="social_links">
+{% if AUTHOR_SUMMARY %}
+        <p id="author_summary"><b>About {{AUTHOR}}</b><br />{{ AUTHOR_SUMMARY }}</p>
+{% endif %}
+        <ul id="social_links">
 {% if GOOGLE_PLUS_USERNAME %}
-            <li><a href="https://plus.google.com/+{{ GOOGLE_PLUS_USERNAME }}/" title="{{ AUTHOR }} on Google+" rel='me' target="_blank"><i class="fa fa-google-plus fa-2x"></i></a></li>
+          <li><a href="https://plus.google.com/+{{ GOOGLE_PLUS_USERNAME }}/" title="{{ AUTHOR }} on Google+" rel='me' target="_blank"><i class="fa fa-google-plus fa-2x"></i></a></li>
 {% endif %}
 {% if TWITTER_USERNAME %}
-            <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}/" title="{{ AUTHOR }} on Twitter" rel='me' target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+          <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}/" title="{{ AUTHOR }} on Twitter" rel='me' target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
 {% endif %}
 {% if LINKEDIN_USERNAME %}
-            <li><a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/" title="{{ AUTHOR }} on LinkedIn" rel='me' target="_blank"><i class="fa fa-linkedin fa-2x"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/" title="{{ AUTHOR }} on LinkedIn" rel='me' target="_blank"><i class="fa fa-linkedin fa-2x"></i></a></li>
 {% endif %}
 {% if GITHUB_USERNAME %}
-            <li><a href="https://github.com/{{ GITHUB_USERNAME }}/" title="{{ AUTHOR }} on GitHub" rel='me' target="_blank"><i class="fa fa-github fa-2x"></i></a></li>
+          <li><a href="https://github.com/{{ GITHUB_USERNAME }}/" title="{{ AUTHOR }} on GitHub" rel='me' target="_blank"><i class="fa fa-github fa-2x"></i></a></li>
 {% endif %}
-          </ul>
-        </div>
-{% if AUTHOR_SUMMARY %}
-      <div id="author_summary">
-        <p>{{ AUTHOR_SUMMARY }}</p>
-      </div>
-{% endif %}
+        </ul>
         <ul>
 {% for title, link in MENUITEMS %}
           <li><a href="{{ link }}">{{ title }}</a></li>
 {% endfor %}
-{% if DISPLAY_PAGES_ON_MENU %}{% for p in pages %}
-          <li><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-{% endfor %}{% endif %}
 {% for name, link in LINKS %}
           <li><a href="{{ link }}" target="_blank">{{ name }}</a></li>
 {% endfor %}
@@ -94,22 +87,40 @@
 
     <main>
       <header>
-        <p id="menu">
-          <a href="{{ SITEURL }}"><i class="fa fa-home"></i> Home</a> &#124; <a href="{{ SITEURL }}/archive.html">Article Archives</a>
-{% if FEED_ALL_ATOM %}
-          &#124; <i class="fa fa-rss"></i><a> Site Feeds: </a><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">All Posts</a>
-{% if CATEGORY_FEED_ATOM and categories %}
-{% for cat, null in categories %}
-          - <a href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(cat) }}">{{ cat }} Posts</a>
+        <nav><ul id="menu">
+          <li><a href="{{ SITEURL }}"><i class="fa fa-home"></i> Home</a>
+{% if DISPLAY_PAGES_ON_MENU %}
+          <ul>
+{% for p in pages %}
+            <li><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
 {% endfor %}
+          </ul>
 {% endif %}
+          </li>
+{% if categories %}
+          <li><a>Article Archives</a>
+            <ul>
+{% for category, null in categories %}
+              <li><a href="{{ SITE_URL }}/{{ category.url }}">{{ category }}</a></li>
+{% endfor %}
+            </ul>
+          </li>
+{% else %}
+          <li><a href="{{ SITEURL }}/archive.html">Article Archives</a></li>
 {% endif %}
-{% if FEED_ALL_RSS %}
-          &#124; <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">RSS Feed - All Posts</a>
+{% if FEED_ALL_ATOM and CATEGORY_FEED_ATOM %}
+          <li><a><i class="fa fa-rss"></i> Site Feeds</a>
+            <ul>
+              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">All Posts</a></li>
+{% for category, null in categories %}
+              <li><a href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category) }}">{{ category }} Posts</a></li>
+{% endfor %}
+            </ul>
+          </li>
 {% endif %}
 {% block header %}
 {% endblock header %}
-        </p>
+        </ul></nav>
       </header>
 
 {% block content %}
