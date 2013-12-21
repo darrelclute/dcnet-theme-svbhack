@@ -113,7 +113,7 @@
             <ul>
               <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">All Posts</a></li>
 {% for category, null in categories %}
-              <li><a href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category) }}">{{ category }} Posts</a></li>
+              <li><a href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category) }}">{{ category }}</a></li>
 {% endfor %}
             </ul>
           </li>
