@@ -27,7 +27,7 @@
           {{ article.content }}
         </div>
         <div class="article_meta">
-          <p>Category: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></p>
+          <p>Category: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category|capitalize() }}</a></p>
 {% if article.tags %}
           <p>Tags:
 {% for tag in article.tags %}

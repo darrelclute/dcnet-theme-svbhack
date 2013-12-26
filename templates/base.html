@@ -19,18 +19,18 @@
 {% endfor %}
 
 {% if FEED_ALL_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - All Posts" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM|replace("/index.xml", "/") }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - All Posts" />
 {% endif %}
 {% if FEED_ALL_RSS %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed - All Posts" />
 {% endif %}
 {% if categories %}
 {% for cat, null in categories %}
 {% if CATEGORY_FEED_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(cat) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - {{ cat }} Posts" />
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(cat)|replace("/index.xml", "/") }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed - {{ cat|capitalize() }} Posts" />
 {% endif %}
 {% if CATEGORY_FEED_RSS %}
-    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(cat) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed - {{ cat }} Posts" />
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(cat) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed - {{ cat|capitalize() }} Posts" />
 {% endif %}
 {% endfor %}
 {% endif %}
@@ -101,7 +101,7 @@
           <li><a>Article Archives</a>
             <ul>
 {% for category, null in categories %}
-              <li><a href="{{ SITE_URL }}/{{ category.url }}">{{ category }}</a></li>
+              <li><a href="{{ SITE_URL }}/{{ category.url }}">{{ category|capitalize() }}</a></li>
 {% endfor %}
             </ul>
           </li>
@@ -111,9 +111,9 @@
 {% if FEED_ALL_ATOM and CATEGORY_FEED_ATOM %}
           <li><a><i class="fa fa-rss"></i> Site Feeds</a>
             <ul>
-              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">All Posts</a></li>
+              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM|replace("/index.xml", "/") }}">All Posts</a></li>
 {% for category, null in categories %}
-              <li><a href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category) }}">{{ category }}</a></li>
+              <li><a href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category)|replace("/index.xml", "/") }}">{{ category|capitalize() }}</a></li>
 {% endfor %}
             </ul>
           </li>
