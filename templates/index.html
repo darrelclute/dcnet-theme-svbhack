@@ -7,7 +7,7 @@
           <h6>{{ article.locale_date }}</h6>
         </div>
         <div class="article_text">
-          {{ article.summary|truncate(length=750) }}
+          <p>{{ article.summary|truncate(length=750) }}</p>
           <p><a href="{{ SITEURL }}/{{ article.url }}">Continue Reading</a></p>
         </div>
       </article>
