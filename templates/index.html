@@ -8,6 +8,7 @@
         </div>
         <div class="article_text">
           {{ article.summary|truncate(length=750) }}
+          <p><a href="{{ SITEURL }}/{{ article.url }}">Continue Reading</a></p>
         </div>
       </article>
 {% if not loop.last %}
