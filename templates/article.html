@@ -9,7 +9,9 @@
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
     <meta property="og:title" content="{{ article.title }}">
     <meta property="og:description" content="{{ article.content|striptags()|truncate(length=200) }}">
-    <meta property="og:image" content="">
+{% if article.image %}
+    <meta property="og:image" content="{{ article.image }}">
+{% endif %}
 {% endblock %}
 
 {% block title %}{{ article.title }}: {% endblock %}
