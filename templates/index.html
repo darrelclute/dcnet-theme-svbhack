@@ -3,12 +3,12 @@
 {% for article in articles_page.object_list %}
       <article>
         <div class="article_title">
-          <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+          <h3><a href="/{{ article.url }}">{{ article.title }}</a></h3>
           <h6>{{ article.locale_date }}</h6>
         </div>
         <div class="article_text">
           <p>{{ article.summary|truncate(length=750) }}</p>
-          <p><a href="{{ SITEURL }}/{{ article.url }}">Continue Reading</a></p>
+          <p><a href="/{{ article.url }}">Continue Reading</a></p>
         </div>
       </article>
 {% if not loop.last %}
