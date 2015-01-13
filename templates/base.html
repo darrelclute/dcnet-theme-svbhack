@@ -2,20 +2,22 @@
 <html lang="{{ DEFAULT_LANG }}" prefix="og: http://ogp.me/ns#">
 
   <head>
-    <link rel="stylesheet/less" type="text/css" href="/css/style.less">
+    <link rel="stylesheet/less" type="text/css" href="/css/style.less" />
     <script src="/js/less-1.5.0.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="{{ AUTHOR }}">
-    <meta name="description" content="{{ TAGLINE }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="{{ AUTHOR }}" />
+{% block description %}
+    <meta name="description" content="{{ TAGLINE }}" />
+{% endblock %}
 {% for name, content in DEFAULT_METADATA %}
-    <meta name="{{ name }}" content="{{ content }}">
+    <meta name="{{ name }}" content="{{ content }}" />
 {% endfor %}
 
 {% if FEED_ALL_ATOM %}
@@ -39,7 +41,7 @@
 {% endblock %}
 
     <title>
-      {% block title %}{% endblock %}{{ SITENAME }} - {{ TAGLINE }}
+      {% block title %}{{ SITENAME }} - {{ TAGLINE }}{% endblock %}
     </title>
 
 {% include "modules/analytics.html" %}
