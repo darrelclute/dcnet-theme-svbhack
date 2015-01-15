@@ -99,7 +99,7 @@
           </ul>
 {% endif %}
           </li>
-{% if categories %}
+{% if DISPLAY_CATEGORIES_ON_MENU and categories %}
           <li><a>Article Archives</a>
             <ul>
 {% for category, null in categories %}
@@ -107,7 +107,7 @@
 {% endfor %}
             </ul>
           </li>
-{% else %}
+{% elif DISPLAY_CATEGORIES_ON_MENU %}
           <li><a href="/archive.html">Article Archives</a></li>
 {% endif %}
 {% if FEED_ALL_ATOM and CATEGORY_FEED_ATOM %}
