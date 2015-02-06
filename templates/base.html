@@ -50,14 +50,14 @@
   <body>
     <aside>
       <div id="user_meta">
-        <a href="/">
+        <a href="{{ SITEURL }}">
 {% if USER_LOGO_URL %}
           <img src="{{ USER_LOGO_URL }}" alt="logo">
 {% else %}
           <img src="/images/logo.png" alt="logo">
 {% endif %}
         </a>
-        <h2><a href="/">{{ AUTHOR }}</a></h2>
+        <h2><a href="{{ SITEURL }}">{{ AUTHOR }}</a></h2>
         <p>{{ TAGLINE }}</p>
 {% if AUTHOR_SUMMARY %}
         <p id="author_summary"><b>About {{AUTHOR}}</b><br />{{ AUTHOR_SUMMARY }}</p>
@@ -90,7 +90,7 @@
     <main>
       <header>
         <nav><ul id="menu">
-          <li><a href="/"><i class="fa fa-home"></i> Home</a>
+          <li><a href="{{ SITEURL }}"><i class="fa fa-home"></i> Home</a>
 {% if DISPLAY_PAGES_ON_MENU %}
           <ul>
 {% for p in pages %}
